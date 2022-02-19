@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerSimGUI", "ComputerSimGUI\ComputerSimGUI.csproj", "{FF2A04FC-35A9-435B-BB1A-51B34970574E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF2A04FC-35A9-435B-BB1A-51B34970574E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2A04FC-35A9-435B-BB1A-51B34970574E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2A04FC-35A9-435B-BB1A-51B34970574E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2A04FC-35A9-435B-BB1A-51B34970574E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {251BE352-0A92-4ACC-A794-031CF864F932}
+	EndGlobalSection
+EndGlobal

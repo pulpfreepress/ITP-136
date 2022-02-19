@@ -1,0 +1,8 @@
+AuthUserFile /Library/WebServer/WebSites/warrenworks/public_html/itp_136/SampleChapters/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Password Protected Area"
+AuthType Basic
+
+<limit GET POST>
+require valid-user
+</limit>

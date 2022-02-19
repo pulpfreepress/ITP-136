@@ -1,0 +1,511 @@
+<HTML>
+<!--This file created 5/28/00 7:34 AM by Claris Home Page version 3.0-->
+<HEAD>
+   
+<TITLE>ITP 136 Project 2 - Computer Simulator</TITLE>
+   <META NAME=GENERATOR CONTENT="Claris Home Page 3.0">
+   <X-CLARIS-WINDOW TOP=42 BOTTOM=757 LEFT=4 RIGHT=534>
+   <X-CLARIS-TAGVIEW MODE=minimal>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<CENTER>
+  <p><font size="+2">ITP 136<br>
+    C# Programming</font></p>
+  <P><font size="+2">Alternative Project 2 </font></P>
+</CENTER>
+
+<P>&nbsp;</P>
+<P><b>Project Name:</b> The Mark I Mod 0 Encrypted Instruction Set Computer Simulator*</P>
+
+<P><B>Scenario:</B></P>
+
+<P>You are a C# developer with a high-tech firm doing contract work for the Department 
+  of Defense. Your company has won the proposal to develop a proof-of-concept 
+  model for an Encrypted Instruction Set Computer. (EISCS MKI). Your job is to 
+  simulate the operation of the EISCS MKI in a C# console application. </P>
+
+<P>&nbsp;</P>
+
+<P><B>Objectives:</B></P>
+
+<P>Upon completing this project you will have demonstrated your
+complete understanding of the following concepts:</P>
+
+<UL>
+   <LI>Processing cycle of a computer to include:
+   
+   <UL>
+      <LI>Instruction Fetch</LI>
+      
+      <LI>Instruction Decode</LI>
+      
+      <LI>Instruction Execute</LI>
+      
+      <LI>Results Store</LI>
+   </UL>
+   </LI>
+   
+   <LI>Architectural components found in typical processors to
+   include:
+   
+   <UL>
+      <LI>accumulator</LI>
+      
+      <LI>instruction counter</LI>
+      
+      <LI>memory</LI>
+   </UL>
+   </LI>
+   
+   <LI>The use and implementation of the following:
+   
+   <UL>
+      <LI>Arrays</LI>
+      
+      <LI>C# console input and output</LI>
+      
+      <LI>Program execution control structures</LI>
+   </UL>
+   </LI>
+</UL>
+
+<P>&nbsp;</P>
+
+<P><B>Tasks:</B></P>
+
+<UL>
+   
+  <LI><B>Basic:</B> Implement the Encrypted Instruction Set Computer Simulator 
+    as a C# console application.</LI>
+   
+   
+  <LI><B>Advanced:</B> Implement a simple encryption/decryption algorithm that 
+    can be used to encrypt and decrypt the instructions and data in memory. Decrypt 
+    each instruction and operand when they are fetched from memory. [ This is 
+    optional and you will not lose points if you chose not to do this. ]</LI>
+</UL>
+
+<P>&nbsp;</P>
+
+<P><b>Background:</b></P>
+
+<P>EISCS MKI Language Set</P>
+
+<P>The only language a computer really understands is it's machine
+language instruction set; the EISCS is no different. An EISCS machine
+language instruction will consist of a four digit integer with the
+two most significant digits being the opcode and the two least
+significant digits being the operand. For example...</P>
+
+<CENTER>
+  <IMG SRC="instruction_fmt.gif" WIDTH=99 HEIGHT=55 X-CLARIS-USEIMAGEWIDTH X-CLARIS-USEIMAGEHEIGHT ALIGN=bottom>
+</CENTER>
+
+<P>...would instruct the computer to write the contents of memory
+location 33 to the screen. The full set of EISCS opcodes grouped by
+function is as follows:</P>
+
+<P><TABLE BORDER=1>
+   <TR>
+      <TD COLSPAN=2>
+         <CENTER>Input/Output Operation</CENTER>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P>const int READ = 10</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Read an integer from the console into a specific memory location.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int WRITE = 11</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Write an integer from a specified memory location to the console.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD COLSPAN=2>
+         <CENTER>Load/Store Operations</CENTER>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int LOAD = 20</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Load a word from a specified memory location into the
+         accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int STORE = 21</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Store a word from the accumulator into a specified memory
+         location.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD COLSPAN=2>
+         <CENTER>Arithmetic Operations</CENTER>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int ADD = 30</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Add a word from a specified memory location to the
+         contents of the accumulator and leave the results in the
+         accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int SUBTRACT = 31</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Subtract a word from a specified memory location from the
+         contents of the accumulator and leave the results in the
+         accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int DIVIDE = 32</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Divide a word from a specific memory location into the
+         contents of the accumulator and leave the results in the
+         accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int MULTIPLY = 33</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Multiply a word from a specified memory location by the
+         contents of the accumulator and leave the contents in the
+         accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD COLSPAN=2>
+         <CENTER>Control Transfer Operations</CENTER>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int BRANCH = 40</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Branch to a specified memory location.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int BRANCHNEG = 41</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Branch to a specified memory location if the contents of
+         the accumulator is negative.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int BRANCHZERO = 42</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Branch to a specified memory location if the contents of
+         the accumulator is zero.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P> const int HALT = 43</P>
+      </TD>
+      
+    <TD width="551"> 
+      <P>Stop program execution - The program has completed its
+         task.</P>
+      </TD>
+   </TR>
+   <TR>
+      
+    <TD width="154"> 
+      <P></P>
+      </TD>
+      
+    <TD width="551"> 
+      <P></P>
+      </TD>
+   </TR>
+</TABLE>
+<p></P>
+
+<P>Sample Program:</P>
+
+<P>Using the EISCS machine language instruction set above you can now
+write simple programs for the EISCS. <TABLE BORDER=1>
+   <TR>
+      <TD>
+         <P>Memory Location</P>
+      </TD>
+      <TD>
+         <P>Instruction/contents</P>
+      </TD>
+      <TD>
+         <P>Action</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>00</P>
+      </TD>
+      <TD>
+         <P>1010</P>
+      </TD>
+      <TD>
+         <P>Read word from input into memory location 10.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>01</P>
+      </TD>
+      <TD>
+         <P>1011</P>
+      </TD>
+      <TD>
+         <P>Read word from input into memory location 11.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>02</P>
+      </TD>
+      <TD>
+         <P>2010</P>
+      </TD>
+      <TD>
+         <P>Load word at memory location 10 into accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>03</P>
+      </TD>
+      <TD>
+         <P>3311</P>
+      </TD>
+      <TD>
+         <P>Multiply contents of accumulator by contents of memory
+         location 11 and leave results in accumulator.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>04</P>
+      </TD>
+      <TD>
+         <P>2112</P>
+      </TD>
+      <TD>
+         <P>Store the contents of the accumulator into memory
+         location 12.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>05</P>
+      </TD>
+      <TD>
+         <P>1112</P>
+      </TD>
+      <TD>
+         <P>Write the contents of memory location 12 to the 
+         console.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>06</P>
+      </TD>
+      <TD>
+         <P>4015</P>
+      </TD>
+      <TD>
+         <P>Branch to memory location 15.</P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>07</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>08</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>09</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>10</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>11</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>12</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>13</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>14</P>
+      </TD>
+      <TD>
+         <P>0000</P>
+      </TD>
+      <TD>
+         <P></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <P>15</P>
+      </TD>
+      <TD>
+         <P>4300</P>
+      </TD>
+      <TD>
+         <P>Halt program</P>
+      </TD>
+   </TR>
+</TABLE>
+<p></P>
+
+<P><B>The Basic Operation Of The EISCS</B></P>
+
+<P><B>Memory</B></P>
+
+<P>The machine language instructions that comprise an EISCS program
+must be loaded into the EISCS's memory. The EISCS's memory is
+represented by a 100 element long integer array. It could be declared
+as follows:</P>
+
+<BLOCKQUOTE><BLOCKQUOTE><PRE>private int memory&#91; &#93; = new int&#91;100&#93;;</PRE></BLOCKQUOTE></BLOCKQUOTE>
+
+<P><B>Instruction Decoding</B></P>
+
+<P>In order to execute programs correctly the EISCS must be able to separate opcodes 
+  from operands. Take as an example the instruction located at memory location 
+  00 in the sample program above. The word 1010 must be separated into its opcode 
+  (READ) and operand (memory location destination). Since EISCS programs must 
+  be loaded into memory before execution the following C# statements might be 
+  used to extract an instruction from memory prior to execution:</P>
+
+<BLOCKQUOTE><BLOCKQUOTE><PRE>instruction = memory&#91;program_counter&#93;; <BR>operation_code = instruction / 100;<BR>operand = instruction % 100;</PRE></BLOCKQUOTE></BLOCKQUOTE>
+
+<P>&nbsp;</P>
+
+<P><B>Hints</B></P>
+
+<UL>
+  <LI>Use a switch/case statement to execute the various instructions once decoded.</LI>
+</UL>
+
+<P>
+
+<HR>
+
+* Adapted from the Simpletron exercises 5.18 &amp; 5.19 of Deitel
+&amp; Deitel's C++ How To Program Second Edition.<p></P>
+
+<P></P>
+</BODY>
+</HTML>

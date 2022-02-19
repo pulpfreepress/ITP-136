@@ -1,0 +1,10 @@
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\bin\Debug\ComputerSimGUI.exe.config
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\bin\Debug\ComputerSimGUI.exe
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\bin\Debug\ComputerSimGUI.pdb
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.csprojAssemblyReference.cache
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.Properties.Resources.resources
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.csproj.GenerateResource.cache
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.csproj.CoreCompileInputs.cache
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.exe
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.pdb
+C:\Users\rm287\Desktop\Projects\ComputerSimGUI\ComputerSimGUI\obj\Debug\ComputerSimGUI.MainForm.resources

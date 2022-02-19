@@ -1,0 +1,74 @@
+using System;
+using System.Drawing;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Net.NetworkInformation;
+using System.Threading;
+
+
+public class MultiIPEchoServer {
+
+  private static void ProcessClientRequests(Object argument){
+    TcpClient client = (TcpClient)argument;
+    try {
+      StreamReader reader = new StreamReader(client.GetStream());
+      StreamWriter writer = new StreamWriter(client.GetStream());
+      String s = String.Empty;
+      while(!(s = reader.ReadLine()).Equals("Exit")){
+        Console.WriteLine("From client -> " + s);
+        writer.WriteLine("From server -> " + s);
+        writer.Flush();
+      }
+      reader.Close();
+      writer.Close();
+      client.Close();
+      Console.WriteLine("Client connection closed!");
+    }catch(IOException){
+      Console.WriteLine("Problem with client communication. Exiting thread.");
+    }finally{
+       if(client != null){
+         client.Close();
+       }
+     }    
+  }
+  
+  private static void ShowServerNetworkConfig(){  
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+    foreach(NetworkInterface adapter in adapters){
+      Console.WriteLine(adapter.Description);
+      Console.WriteLine("\tAdapter Name: " + adapter.Name);
+      Console.WriteLine("\tMAC Address: " + adapter.GetPhysicalAddress());
+      IPInterfaceProperties ip_properties = adapter.GetIPProperties();
+      UnicastIPAddressInformationCollection addresses = ip_properties.UnicastAddresses;
+      foreach(UnicastIPAddressInformation address in addresses){
+        Console.WriteLine("\tIP Address: " + address.Address);
+      }
+    }
+    Console.ForegroundColor = ConsoleColor.White;
+  }
+
+  public static void Main(){
+    TcpListener listener = null;
+    try {
+      ShowServerNetworkConfig();
+      listener = new TcpListener(IPAddress.Any, 8080);
+      listener.Start();
+      Console.WriteLine("MultiIPEchoServer started...");
+      while(true){
+        Console.WriteLine("Waiting for incoming client connections...");
+        TcpClient client = listener.AcceptTcpClient();
+        Console.WriteLine("Accepted new client connection...");
+        Thread t = new Thread(ProcessClientRequests);
+        t.Start(client);
+      }
+     }catch(Exception e){
+       Console.WriteLine(e);
+     }finally{
+       if(listener != null){
+         listener.Stop();
+       }
+      }
+  } // end Main()
+} // end class definition
